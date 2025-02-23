@@ -15,10 +15,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center ">
       <button
         onClick={handleLogin}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-[#ec8619] font-semibold rounded-t-4xl rounded-b-md px-5 py-3 "
       >
         Sign in with Google
       </button>
