@@ -8,7 +8,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
        await signInWithGoogle();
-       navigate('/home')
+       navigate('/createTask')
     } catch (error) {
       console.error(error);
     }

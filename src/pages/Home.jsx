@@ -1,13 +1,14 @@
-import { useState } from "react";
-import CreateTask from "../components/CreateTask";
+
+import Login from "../components/Login"
+
 
 const Home = () => {
-  const [tasks, setTasks] = useState([])
-  return (
-    <div>
-      <CreateTask tasks={tasks} setTasks={setTasks}></CreateTask>
-    </div>
-  );
+    return (
+        <div>
+          
+          <Login></Login>
+        </div>
+    );
 };
 
 export default Home;
