@@ -7,14 +7,13 @@ import Home from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MainLayout from "./layout/MainLayout";
 import TaskList from "./pages/TaskList";
-import CreateTask from "./pages/CreateTask";
+import CreateTask from "./pages/CreateTask/CreateTask";
 
 // Create a client
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
- 
-   {
+  {
     path: "/",
     element: <MainLayout />,
     children: [
@@ -24,19 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/createTask",
-        element: (
-       
-           <CreateTask></CreateTask>
-       
-        ),
+        element: <CreateTask></CreateTask>,
       },
       {
         path: "/taskList",
-        element: (
-         
-          <TaskList></TaskList>
-        
-        ),
+        element: <TaskList></TaskList>,
       },
     ],
   },
