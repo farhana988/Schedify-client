@@ -6,7 +6,7 @@ import AuthProvider from "./Provider/AuthProvider";
 import Home from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MainLayout from "./layout/MainLayout";
-import TaskList from "./pages/TaskList";
+import TaskList from "./pages/TaskList/TaskList";
 import CreateTask from "./pages/CreateTask/CreateTask";
 
 // Create a client
