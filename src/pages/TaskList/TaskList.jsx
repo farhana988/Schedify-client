@@ -29,9 +29,9 @@ const TaskList = () => {
           `${import.meta.env.VITE_API_URL}/tasks?email=${user?.email}`
         );
         return data;
-      } catch (error) {
+      } catch  {
         alert("Something went wrong.");
-        console.log(error);
+     
       }
     },
   });
@@ -97,8 +97,8 @@ const TaskList = () => {
   if (isError) return <p>{error.message}</p>;
 
   return (
-    <div className="container mx-auto p-6 ">
-      <h2 className="text-3xl font-bold text-center mb-20">Task List</h2>
+    <div className="container mx-auto p-6 mt-10">
+      <h2 className="text-3xl font-bold text-center mb-36">Task List</h2>
       <h2> </h2>
       <TaskListContent
         categories={categories}

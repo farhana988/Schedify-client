@@ -5,7 +5,7 @@ const CreateTaskForm = ({ register, handleSubmit, errors, onSubmit }) => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
         <div>
-          <label className="block font-semibold">Title</label>
+          <label className="block font-bold lg:text-xl pl-1">Title</label>
           <input
             type="text"
             {...register("title", {
@@ -20,7 +20,7 @@ const CreateTaskForm = ({ register, handleSubmit, errors, onSubmit }) => {
         </div>
 
         <div>
-          <label className="block font-semibold">Description</label>
+          <label className="block font-bold lg:text-xl pl-1">Description</label>
           <textarea
             {...register("description", {
               required: "Description is required",
@@ -35,10 +35,12 @@ const CreateTaskForm = ({ register, handleSubmit, errors, onSubmit }) => {
 
         <button
           type="submit"
-          className=" bg-blue-600 text-white py-2 rounded cursor-pointer"
+           className="bg-[#ec8619] font-semibold rounded-t-4xl rounded-b-md px-5 py-3 
+           cursor-pointer w-40 lg:text-xl "
         >
           Create Task
         </button>
+      
       </form>
     </div>
   );

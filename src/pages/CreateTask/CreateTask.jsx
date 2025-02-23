@@ -33,7 +33,7 @@ const CreateTask = () => {
 
   return (
     <div className="container mx-auto mt-10 p-6 ">
-      <h2 className="text-3xl font-bold mb-4 text-center">Create New Task</h2>
+      <h2 className="text-3xl font-bold mb-10 text-center">Create New Task</h2>
       <CreateTaskForm
         register={register}
         handleSubmit={handleSubmit}
