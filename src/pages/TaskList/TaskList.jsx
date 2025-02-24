@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Loading from "../../components/Loading";
 import TaskListContent from "./TaskListContent";
+import Swal from "sweetalert2";
 
 const TaskList = () => {
   const { user } = useContext(AuthContext);
@@ -29,9 +30,13 @@ const TaskList = () => {
           `${import.meta.env.VITE_API_URL}/tasks?email=${user?.email}`
         );
         return data;
-      } catch  {
-        alert("Something went wrong.");
-     
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "Failed",
+          text: "Something went wrong. Please try again.",
+          confirmButtonText: "OK",
+        });
       }
     },
   });
@@ -47,21 +52,52 @@ const TaskList = () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
     onError: () => {
-      alert("Failed to update task status.");
+      Swal.fire({
+        icon: "error",
+        title: "Update Failed",
+        text: "Failed to update task status. Please try again.",
+        confirmButtonText: "OK",
+      });
     },
   });
 
   // delete
   const deleteTask = useMutation({
     mutationFn: async (id) => {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/tasks/${id}`);
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to undo this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/tasks/${id}`);
+        Swal.fire({
+          icon: "success",
+          title: "Deleted!",
+          text: "The task has been deleted.",
+          toast: true,
+          position: "top-end",
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      alert("Task deleted!");
     },
     onError: () => {
-      alert("Failed to delete task.");
+      Swal.fire({
+        icon: "error",
+        title: "Delete Failed",
+        text: "Failed to delete task. Please try again.",
+        confirmButtonText: "OK",
+      });
     },
   });
 

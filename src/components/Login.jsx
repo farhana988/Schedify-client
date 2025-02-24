@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const {signInWithGoogle } = useContext(AuthContext);
@@ -8,9 +9,24 @@ const Login = () => {
   const handleLogin = async () => {
     try {
        await signInWithGoogle();
+       Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "You have successfully logged in!",
+        toast: true,
+        position: "top-end",
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
        navigate('/createTask')
-    } catch (error) {
-      console.error(error);
+    } catch  {
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Something went wrong. Please try again.",
+        confirmButtonText: "OK"
+      });
     }
   };
 

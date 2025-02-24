@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import CreateTaskForm from "./CreateTaskForm";
+import Swal from "sweetalert2";
 
 const CreateTask = () => {
   const { user } = useContext(AuthContext);
@@ -24,10 +25,24 @@ const CreateTask = () => {
 
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/tasks`, taskInfo);
-      alert("success");
+      Swal.fire({
+        icon: "success",
+        title: "Task Created",
+        text: "Your task has been successfully added!",
+        toast: true,
+        position: "top-end",
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
       navigate("/taskList");
     } catch {
-      alert("error");
+         Swal.fire({
+              icon: "error",
+              title: "Task Creation Failed",
+              text: "Something went wrong. Please try again.",
+              confirmButtonText: "OK"
+            });
     }
   };
 
