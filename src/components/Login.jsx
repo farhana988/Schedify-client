@@ -2,14 +2,21 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
-    const {signInWithGoogle } = useContext(AuthContext);
-    const navigate = useNavigate()
+  const { signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogin = async () => {
     try {
-       await signInWithGoogle();
-       Swal.fire({
+      const { user } = await signInWithGoogle();
+      const userInfo = {
+        name: user?.displayName,
+        email: user?.email,
+        photoURL: user?.photoURL,
+      };
+      await axios.post(`${import.meta.env.VITE_API_URL}/user`, userInfo);
+      Swal.fire({
         icon: "success",
         title: "Login Successful",
         text: "You have successfully logged in!",
@@ -17,15 +24,15 @@ const Login = () => {
         position: "top-end",
         timer: 3000,
         timerProgressBar: true,
-        showConfirmButton: false
+        showConfirmButton: false,
       });
-       navigate('/createTask')
-    } catch  {
+      navigate("/createTask");
+    } catch {
       Swal.fire({
         icon: "error",
         title: "Login Failed",
         text: "Something went wrong. Please try again.",
-        confirmButtonText: "OK"
+        confirmButtonText: "OK",
       });
     }
   };
