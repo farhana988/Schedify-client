@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MainLayout from "./layout/MainLayout";
 import TaskList from "./pages/TaskList/TaskList";
 import CreateTask from "./pages/CreateTask/CreateTask";
+import PrivateRoute from "./PrivateRoute";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -23,11 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/createTask",
-        element: <CreateTask></CreateTask>,
+        element: <PrivateRoute> <CreateTask></CreateTask> </PrivateRoute> ,
       },
       {
         path: "/taskList",
-        element: <TaskList></TaskList>,
+        element: <PrivateRoute>  <TaskList></TaskList> </PrivateRoute>,
       },
     ],
   },

@@ -83,7 +83,7 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            <FaRegUserCircle className="text-3xl" />
+            <FaRegUserCircle className="text-3xl lg:text-4xl" />
           )}
         </div>
 
